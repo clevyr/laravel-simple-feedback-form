@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Clevyr\FeedbackForm\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FeedbackFormCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-simple-feedback-form';
 
     public $description = 'My command';
 
