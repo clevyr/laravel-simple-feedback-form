@@ -18,6 +18,7 @@ class FeedbackFormServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-simple-feedback-form')
             ->hasConfigFile()
+            ->hasRoute('web')
 
             // ->hasViews()
             // ->hasMigration('create_laravel-simple-feedback-form_table')
@@ -25,20 +26,18 @@ class FeedbackFormServiceProvider extends PackageServiceProvider
             ;
     }
 
-    public function boot(): void {
-        parent::boot();
-
+    public function packageBooted(): void {
         // Publish routes
-        $this->loadRoutesFrom(__DIR__ . '../routes/feedback.php');
+        // $this->loadRoutesFrom(__DIR__ . '../routes/feedback.php');
 
         // Publish notifications
-        $this->publishes([
-            __DIR__ . '/Notifications/Feedback.php' => app_path('Notifications/Feedback.php'),
-        ], 'notifications');
+        // $this->publishes([
+        //     __DIR__ . '/Notifications/Feedback.php' => app_path('Notifications/Feedback.php'),
+        // ], 'notifications');
 
         // Publish resources
         $this->publishes([
-            __DIR__ . '../resources/js/FeedbackForm.vue' => resource_path('js/components/FeedbackForm.vue'),
+            __DIR__ . '/../resources/js/FeedbackForm.vue' => resource_path('js/Components/FeedbackForm.vue'),
         ], 'resources');
     }
 

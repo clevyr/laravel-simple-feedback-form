@@ -184,18 +184,23 @@ export default {
 
     computed: {
         isValid() {
+            console.log('in is valid');
             if (this.isLoading) {
+                console.log('invalid 1');
                 return false;
             }
 
             if (!this.name) {
+                console.log('invalid 2');
                 return false;
             }
 
             if (!this.body) {
+                console.log('invalid 3');
                 return false;
             }
 
+            console.log('valid');
             return true;
         },
     },
@@ -215,7 +220,7 @@ export default {
                 this.success = false;
                 this.isLoading = true,
 
-                await axios.post(`/feedback`, {
+                await axios.post(`/simple-feedback`, {
                     name: this.nameField,
                     email: this.emailField,
                     body: this.body,

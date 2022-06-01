@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications;
+namespace Clevyr\FeedbackForm\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
