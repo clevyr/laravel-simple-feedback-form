@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Feedback extends Notification
+class Feedback extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -43,14 +43,13 @@ class Feedback extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-          ->replyTo($this->data['email'])
           ->line('You have received feedback from:')
           ->line('')
           ->line('Name: ' . $this->data['name'])
-          ->line('Email: ' . $this->data['email'])
+          ->line('Email: ' . $this->data['email'] ?? '')
           ->line('')
           ->line('Comment:')
-          ->line($this->data['body']);
+          ->line($this->data['comment']);
     }
 
     /**
