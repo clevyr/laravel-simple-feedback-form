@@ -46,7 +46,7 @@ class Feedback extends Notification implements ShouldQueue
           ->line('You have received feedback from:')
           ->line('')
           ->line('Name: ' . $this->data['name'])
-          ->line('Email: ' . $this->data['email'] ?? '')
+          ->line('Email: ' . $this->data['email'])
           ->line('')
           ->line('Comment:')
           ->line($this->data['comment']);
