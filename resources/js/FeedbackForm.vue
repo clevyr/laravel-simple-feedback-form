@@ -154,6 +154,10 @@ export default {
 		submitButtonLabel: {
 			type: String,
 			default: "Submit",
+		},
+		keepFieldsOnSubmit: {
+			type: Boolean,
+			default: false
 		}
 	},
 
@@ -267,6 +271,10 @@ export default {
 		},
 
 		reset() {
+			if (this.keepFieldsOnSubmit) return;
+
+			this.nameField = null;
+			this.emailField = null;
 			this.comment = null;
 		},
 	},
