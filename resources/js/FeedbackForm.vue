@@ -11,11 +11,11 @@
 		</button>
 		<div
 			v-if="isActive"
-			class="feedback-form"
 			id="feedbackform"
+			ref="dialog"
+			class="feedback-form"
 			role="dialog"
 			aria-modal="false"
-			ref="dialog"
 			aria-labelledby="feedbackform-title"
 			tabindex="-1"
 		>
@@ -23,14 +23,23 @@
 				class="form"
 				@submit.prevent="onSubmit"
 			>
-				<h2 class="mb-2 h6 text-sm" id="feedbackform-title">
+				<h2
+					id="feedbackform-title"
+					class="mb-2 h6 text-sm"
+				>
 					{{ formTitle }}
 				</h2>
-				<p v-if="success" class="text-success text-center whitespace-pre-wrap">
+				<p
+					v-if="success"
+					class="text-success text-center whitespace-pre-wrap"
+				>
 					{{ successMessage }}
 				</p>
-				<p v-if="errors" class="text-danger text-center">
-				{{ errors }}
+				<p
+					v-if="errors"
+					class="text-danger text-center"
+				>
+					{{ errors }}
 				</p>
 				<div class="form-control">
 					<label
@@ -46,12 +55,12 @@
 						</span>
 					</label>
 					<input
-						v-model="nameField"
 						id="feedback-name"
-						type="text"
 						ref="nameInputField"
+						v-model="nameField"
+						type="text"
 						required
-					/>
+					>
 				</div>
 				<div class="form-control">
 					<label
@@ -59,10 +68,10 @@
 						for="feedback-email"
 					>Email</label>
 					<input
-						v-model="emailField"
 						id="feedback-email"
+						v-model="emailField"
 						type="email"
-					/>
+					>
 				</div>
 				<div class="form-control">
 					<label
@@ -78,10 +87,10 @@
 						</span>
 					</label>
 					<textarea
-						class="resize-none"
 						id="feedback-body"
-						type="text"
 						v-model="comment"
+						class="resize-none"
+						type="text"
 						required
 					/>
 				</div>
@@ -149,7 +158,7 @@ export default {
 		},
 		successMessage: {
 			type: String,
-			default: "Your feedback\nhas been submitted!"
+			default: 'Your feedback\nhas been submitted!',
 		},
 		submitButtonLabel: {
 			type: String,
@@ -191,6 +200,22 @@ export default {
 		},
 	},
 
+	watch: {
+		isActive(value) {
+			if (value) {
+				return;
+			}
+
+			// Reset the state of the form.
+			this.success = false;
+			this.errors = null;
+		},
+	},
+
+	mounted() {
+		this.reset();
+	},
+
 	methods: {
 		toggleForm() {
 			this.isActive ? this.hideForm() : this.showForm();
@@ -215,7 +240,6 @@ export default {
 				document.removeEventListener('keydown', this.closeOnEscape);
 				document.removeEventListener('click', this.closeOnClickOutside);
 				document.removeEventListener('focusin', this.closeOnFocusOutside);
-
 			});
 		},
 
@@ -245,7 +269,7 @@ export default {
 		},
 
 		closeOnFocusOutside() {
-			this.closeOnClickOutside({target: document.activeElement});
+			this.closeOnClickOutside({ target: document.activeElement });
 		},
 
 		async onSubmit() {
@@ -254,7 +278,7 @@ export default {
 				this.success = false;
 				this.isLoading = true,
 
-				await axios.post(`/simple-feedback`, {
+				await axios.post('/simple-feedback', {
 					name: this.nameField,
 					email: this.emailField,
 					comment: this.comment,
@@ -276,22 +300,6 @@ export default {
 			this.nameField = null;
 			this.emailField = null;
 			this.comment = null;
-		},
-	},
-
-	mounted() {
-		this.reset();
-	},
-
-	watch: {
-		isActive(value) {
-			if (value) {
-				return;
-			}
-
-			// Reset the state of the form.
-			this.success = false;
-			this.errors = null;
 		},
 	},
 };
