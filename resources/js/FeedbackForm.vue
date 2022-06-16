@@ -162,18 +162,17 @@ export default {
 		},
 		submitButtonLabel: {
 			type: String,
-			default: "Submit",
+			default: 'Submit',
 		},
 		keepFieldsOnSubmit: {
 			type: Boolean,
 			default: false
-		}
+		},
 	},
-
 	data() {
 		return {
-			emailField: this.email ?? '',
-			nameField: this.name ?? '',
+			emailField: '',
+			nameField: '',
 			comment: null,
 			isActive: false,
 			isLoading: false,
@@ -213,7 +212,7 @@ export default {
 	},
 
 	mounted() {
-		this.reset();
+		this.comment = null;
 	},
 
 	methods: {
@@ -223,6 +222,13 @@ export default {
 
 		showForm() {
 			this.isActive = true;
+
+			if (this.email) {
+				this.emailField = this.email;
+			}
+			if (this.name) {
+				this.nameField = this.name;
+			}
 
 			this.$nextTick(() => {
 				document.addEventListener('keydown', this.closeOnEscape);
