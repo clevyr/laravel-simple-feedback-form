@@ -166,7 +166,7 @@ export default {
 		},
 		keepFieldsOnSubmit: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 	},
 	data() {
