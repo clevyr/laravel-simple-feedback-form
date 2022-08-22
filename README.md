@@ -58,14 +58,20 @@ FEEDBACK_EMAIL=
     />
 </template>
 
+// Options API
 <script>
-import FeedbackForm from "../Components/FeedbackForm";
+import FeedbackForm from '@/Components/FeedbackForm.vue';
 
 export default {
     components: {
         FeedbackForm,
     },
 };
+</script>
+
+// Composition API
+<script setup>
+import FeedbackForm from '@/Components/FeedbackForm.vue';
 </script>
 ```
 
