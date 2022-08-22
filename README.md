@@ -7,7 +7,7 @@
 
 ## Requirements
 
--   Laravel 8+
+-   Laravel 9+
 -   Vue3
 
 ## Installation
@@ -35,7 +35,6 @@ This is an example of the contents of the published config file:
 ```php
 return [
   'email' => 'test@email.com',
-  'enabled' => true,
 ];
 ```
 
@@ -43,7 +42,6 @@ Your `.env` file must contain:
 
 ```
 FEEDBACK_EMAIL=
-FEEDBACK_ENABLED=
 ```
 
 ## Example
