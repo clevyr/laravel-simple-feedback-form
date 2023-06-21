@@ -21,6 +21,10 @@ Route::post('simple-feedback', function (Request $request) {
             'email',
             'max:255',
         ],
+        'phone' => [
+            'nullable',
+            'string',
+        ],
         'comment' => [
             'required',
             'string',

@@ -76,6 +76,17 @@
 				<div class="form-control">
 					<label
 						class="form-label"
+						for="feedback-phone"
+					>Phone</label>
+					<input
+						id="feedback-phone"
+						v-model="phoneField"
+						type="tel"
+					>
+				</div>
+				<div class="form-control">
+					<label
+						class="form-label"
 						for="feedback-body"
 					>
 						Comment
@@ -174,6 +185,7 @@ export default {
 		return {
 			emailField: this.email ?? '',
 			nameField: this.name ?? '',
+			phoneField: '',
 			comment: null,
 			isActive: false,
 			isLoading: false,
@@ -281,6 +293,7 @@ export default {
 				await axios.post('/simple-feedback', {
 					name: this.nameField,
 					email: this.emailField,
+					phone: this.phoneField,
 					comment: this.comment,
 				});
 
@@ -298,6 +311,7 @@ export default {
 			if (this.keepFieldsOnSubmit) return;
 
 			this.nameField = null;
+			this.phoneField = null;
 			this.emailField = null;
 			this.comment = null;
 		},
